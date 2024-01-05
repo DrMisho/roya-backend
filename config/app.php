@@ -3,6 +3,7 @@
 use App\Facades\Course\CourseFacade;
 use App\Facades\Course\LessonFacade;
 use App\Facades\Course\QuestionFacade;
+use App\Facades\Course\QuizFacade;
 use App\Facades\User\UserFacade;
 use App\Providers\FacadeServiceProvider;
 use Illuminate\Support\Facades\Facade;
@@ -194,6 +195,7 @@ return [
         'CourseFacade' => CourseFacade::class,
         'LessonFacade' => LessonFacade::class,
         'QuestionFacade' => QuestionFacade::class,
+        'QuizFacade' => QuizFacade::class,
     ])->toArray(),
 
 ];

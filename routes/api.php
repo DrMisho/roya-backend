@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,6 +54,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{question}', [QuestionController::class, 'show']);
     });
 
+    Route::group(['prefix' => 'quizzes'], function () {
+        Route::get('/', [QuizController::class, 'index']);
+        Route::get('/{quiz}', [QuizController::class, 'show']);
+    });
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
@@ -73,5 +79,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
         Route::post('/', [QuestionController::class, 'store']);
         Route::put('/{question}', [QuestionController::class, 'update']);
         Route::delete('/{question}', [QuestionController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'quizzes'], function() {
+        Route::post('/', [QuizController::class, 'store']);
+        Route::put('/{quiz}', [QuizController::class, 'update']);
+        Route::delete('/{quiz}', [QuizController::class, 'destroy']);
     });
 });
