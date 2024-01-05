@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +60,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{quiz}', [QuizController::class, 'show']);
     });
 
+    Route::group(['prefix' => 'videos'], function () {
+        Route::get('/', [VideoController::class, 'index']);
+        Route::get('/{video}', [VideoController::class, 'show']);
+    });
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
@@ -85,5 +91,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
         Route::post('/', [QuizController::class, 'store']);
         Route::put('/{quiz}', [QuizController::class, 'update']);
         Route::delete('/{quiz}', [QuizController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'videos'], function() {
+        Route::post('/', [VideoController::class, 'store']);
+        Route::put('/{video}', [VideoController::class, 'update']);
+        Route::delete('/{video}', [VideoController::class, 'destroy']);
     });
 });

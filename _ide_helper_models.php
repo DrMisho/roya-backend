@@ -130,6 +130,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Option whereQuizId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Option whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property int $is_correct
+ * @method static \Illuminate\Database\Eloquent\Builder|Option whereIsCorrect($value)
  */
 	class Option extends \Eloquent {}
 }
@@ -214,6 +216,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereQuestion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Option> $options
+ * @property-read int|null $options_count
  */
 	class Quiz extends \Eloquent {}
 }
@@ -337,6 +341,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Video whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Video whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Models\Course|null $course
  */
 	class Video extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
