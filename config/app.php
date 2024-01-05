@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\Course\CourseFacade;
 use App\Facades\User\UserFacade;
 use App\Providers\FacadeServiceProvider;
 use Illuminate\Support\Facades\Facade;
@@ -188,6 +189,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'UserFacade' => UserFacade::class,
+        'CourseFacade' => CourseFacade::class,
     ])->toArray(),
 
 ];
