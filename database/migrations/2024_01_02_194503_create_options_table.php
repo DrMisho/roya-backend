@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Quiz::class)->nullable()->constrained()->nullOnDelete();
             $table->string('name');
+            $table->boolean('is_correct');
             $table->timestamps();
         });
     }

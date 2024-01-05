@@ -54,5 +54,5 @@ function mediaType($mime_type): string
 
 function userHasAccess(User $user)
 {
-    return auth()->user()->hasRole('super-admin');
+    return $user->hasRole('super-admin');
 }

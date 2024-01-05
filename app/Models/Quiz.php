@@ -37,7 +37,6 @@ class Quiz extends Model
     protected $fillable = [
         'course_id',
         'question',
-        'correct_answer_id',
         'is_public'
     ];
 

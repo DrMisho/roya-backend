@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Course::class)->nullable()->constrained()->nullOnDelete();
             $table->string('question');
-            $table->foreignId('correct_answer_id');
             $table->boolean('is_public')->default(false);
             $table->timestamps();
         });
