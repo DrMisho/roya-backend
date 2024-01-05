@@ -18816,6 +18816,165 @@
         }
          
     }
+            /**
+     * 
+     *
+     */ 
+        class QuestionFacade {
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function queryResult($array = [])
+        {
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->queryResult($array);
+        }
+                    /**
+         * Get List
+         *
+         * @param array $array
+         * @return \Illuminate\Database\Eloquent\Collection 
+         * @static 
+         */ 
+        public static function getList($array = [])
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->getList($array);
+        }
+                    /**
+         * 
+         *
+         * @param $id
+         * @param $slug
+         * @return \App\Services\?Model 
+         * @static 
+         */ 
+        public static function getSingle($id, $slug = '')
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->getSingle($id, $slug);
+        }
+                    /**
+         * 
+         *
+         * @param array $array
+         * @return mixed 
+         * @static 
+         */ 
+        public static function getSingleByQuery($array = [])
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->getSingleByQuery($array);
+        }
+                    /**
+         * 
+         *
+         * @param $query
+         * @return int 
+         * @static 
+         */ 
+        public static function getCount($query = [])
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->getCount($query);
+        }
+                    /**
+         * 
+         *
+         * @param array $form
+         * @return \App\Services\Model 
+         * @static 
+         */ 
+        public static function store($form)
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->store($form);
+        }
+                    /**
+         * 
+         *
+         * @param $model
+         * @param $file
+         * @param string $owner_type
+         * @param int|null $owner_id
+         * @return void 
+         * @static 
+         */ 
+        public static function addMedia($model, $file, $owner_type = '', $owner_id = null)
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        $instance->addMedia($model, $file, $owner_type, $owner_id);
+        }
+                    /**
+         * 
+         *
+         * @param $model
+         * @param $file
+         * @param string $owner_type
+         * @param int $owner_id
+         * @return void 
+         * @static 
+         */ 
+        public static function editMedia($model, $file, $owner_type = '', $owner_id = null)
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        $instance->editMedia($model, $file, $owner_type, $owner_id);
+        }
+                    /**
+         * 
+         *
+         * @param $model
+         * @param string $collection
+         * @return void 
+         * @static 
+         */ 
+        public static function deleteMedia($model, $collection)
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        $instance->deleteMedia($model, $collection);
+        }
+                    /**
+         * Edit Model
+         *
+         * @param array $form
+         * @param \App\Services\[type] $model
+         * @return \App\Services\Model 
+         * @static 
+         */ 
+        public static function edit($form, $model)
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->edit($form, $model);
+        }
+                    /**
+         * Delete Model
+         *
+         * @param \App\Services\[type] $model
+         * @return boolean 
+         * @static 
+         */ 
+        public static function delete($model)
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->delete($model);
+        }
+                    /**
+         * Delete By Query
+         *
+         * @param \App\Services\[type] $query
+         * @param boolean $force
+         * @return boolean 
+         * @static 
+         */ 
+        public static function deleteByQuery($query, $force = false)
+        {            //Method inherited from \App\Services\Service         
+                        /** @var \App\Services\QuestionService $instance */
+                        return $instance->deleteByQuery($query, $force);
+        }
+         
+    }
      
 }
 
@@ -23408,6 +23567,7 @@ namespace  {
             class UserFacade extends \App\Facades\User\UserFacade {}
             class CourseFacade extends \App\Facades\Course\CourseFacade {}
             class LessonFacade extends \App\Facades\Course\LessonFacade {}
+            class QuestionFacade extends \App\Facades\Course\QuestionFacade {}
             class Image extends \Intervention\Image\Facades\Image {}
             class Firebase extends \Kreait\Laravel\Firebase\Facades\Firebase {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}

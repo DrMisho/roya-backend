@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{lesson}', [LessonController::class, 'show']);
     });
 
+    Route::group(['prefix' => 'questions'], function () {
+        Route::get('/', [QuestionController::class, 'index']);
+        Route::get('/{question}', [QuestionController::class, 'show']);
+    });
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
@@ -61,5 +67,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
         Route::post('/', [LessonController::class, 'store']);
         Route::put('/{lesson}', [LessonController::class, 'update']);
         Route::delete('/{lesson}', [LessonController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'questions'], function() {
+        Route::post('/', [QuestionController::class, 'store']);
+        Route::put('/{question}', [QuestionController::class, 'update']);
+        Route::delete('/{question}', [QuestionController::class, 'destroy']);
     });
 });

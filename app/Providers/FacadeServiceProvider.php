@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Services\CourseService;
 use App\Services\LessonService;
+use App\Services\QuestionService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,6 +23,9 @@ class FacadeServiceProvider extends ServiceProvider
         });
         $this->app->bind('LessonService', function () {
             return new LessonService();
+        });
+        $this->app->bind('QuestionService', function () {
+            return new QuestionService();
         });
     }
 
