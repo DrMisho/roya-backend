@@ -14,6 +14,15 @@ class CourseResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'semester' => $this->semester,
+            'academicYear' => $this->academicYear,
+            'image_url' => $this->getFirstMedia('images')?->getUrl(),
+            'image_path' => $this->getFirstMedia('images')?->getPath(),
+            'image_name' => $this->getFirstMedia('images')?->name,
+        ];
     }
 }

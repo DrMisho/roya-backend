@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Course::class)->nullable()->constrained()->nullOnDelete();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->boolean('is_public');
+            $table->boolean('is_public')->default(false);
             $table->timestamps();
         });
     }

@@ -25,6 +25,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|AcademicYear whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AcademicYear whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|AcademicYear whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class AcademicYear extends \Eloquent {}
 }
@@ -54,6 +55,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereSemesterId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Course whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Course extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
@@ -75,6 +77,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|CourseSubscription whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CourseSubscription whereSubscriptionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CourseSubscription whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class CourseSubscription extends \Eloquent {}
 }
@@ -103,6 +106,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereIsPublic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Lesson whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Lesson extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
@@ -125,6 +129,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Option whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Option whereQuizId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Option whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Option extends \Eloquent {}
 }
@@ -148,6 +153,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Package extends \Eloquent {}
 }
@@ -179,6 +185,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Question whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Question whereSemesterId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Question whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Question extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
@@ -206,6 +213,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereIsPublic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereQuestion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Quiz whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Quiz extends \Eloquent {}
 }
@@ -225,6 +233,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Semester whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Semester whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Semester whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Semester extends \Eloquent {}
 }
@@ -252,6 +261,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUserId($value)
+ * @mixin \Eloquent
  */
 	class Subscription extends \Eloquent {}
 }
@@ -298,6 +308,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUsername($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutRole($roles, $guard = null)
+ * @mixin \Eloquent
  */
 	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }
@@ -325,6 +336,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Video whereIsPublic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Video whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Video whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 	class Video extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }

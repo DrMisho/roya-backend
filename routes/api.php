@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LessonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,6 +41,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/', [CourseController::class, 'index']);
         Route::get('/{course}', [CourseController::class, 'show']);
     });
+
+    Route::group(['prefix' => 'lessons'], function () {
+        Route::get('/', [LessonController::class, 'index']);
+        Route::get('/{lesson}', [LessonController::class, 'show']);
+    });
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
@@ -48,5 +55,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
         Route::post('/', [CourseController::class, 'store']);
         Route::put('/{course}', [CourseController::class, 'update']);
         Route::delete('/{course}', [CourseController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'lessons'], function() {
+        Route::post('/', [LessonController::class, 'store']);
+        Route::put('/{lesson}', [LessonController::class, 'update']);
+        Route::delete('/{lesson}', [LessonController::class, 'destroy']);
     });
 });

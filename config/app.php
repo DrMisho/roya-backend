@@ -1,6 +1,7 @@
 <?php
 
 use App\Facades\Course\CourseFacade;
+use App\Facades\Course\LessonFacade;
 use App\Facades\User\UserFacade;
 use App\Providers\FacadeServiceProvider;
 use Illuminate\Support\Facades\Facade;
@@ -190,6 +191,7 @@ return [
         // 'Example' => App\Facades\Example::class,
         'UserFacade' => UserFacade::class,
         'CourseFacade' => CourseFacade::class,
+        'LessonFacade' => LessonFacade::class,
     ])->toArray(),
 
 ];

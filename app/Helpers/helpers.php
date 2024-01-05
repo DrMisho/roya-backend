@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 
 /**
  * @param $data
@@ -48,4 +49,10 @@ function mediaType($mime_type): string
         return 'images';
     }
     return 'files';
+}
+
+
+function userHasAccess(User $user)
+{
+    return auth()->user()->hasRole('super-admin');
 }

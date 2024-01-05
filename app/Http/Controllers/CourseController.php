@@ -67,7 +67,6 @@ class CourseController extends Controller
     {
         try
         {
-            $course = CourseFacade::getSingle($course);
             $count = CourseFacade::getCount();
 
             return successResponse(new CourseResource($course), $count);
