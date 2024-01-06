@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * App\Models\Subscription
@@ -39,7 +40,10 @@ class Subscription extends Model
         'package_id',
         'status',
         'start_date',
+        'end_date',
     ];
+
+    // protected $with = ['courses'];
 
     public function user(): BelongsTo
     {
@@ -49,5 +53,10 @@ class Subscription extends Model
     public function package(): BelongsTo
     {
         return $this->belongsTo(Package::class);
+    }
+
+    public function courses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class, CourseSubscription::class);
     }
 }

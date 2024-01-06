@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Constants\Constant;
 use App\Models\Package;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -17,8 +18,9 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class)->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Package::class)->nullable()->constrained()->nullOnDelete();
-            $table->unsignedTinyInteger('status');
-            $table->date('start_date');
+            $table->unsignedTinyInteger('status')->default(Constant::SUBSCRIPTION_STATUS['معلق']);
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

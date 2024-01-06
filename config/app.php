@@ -4,6 +4,7 @@ use App\Facades\Course\CourseFacade;
 use App\Facades\Course\LessonFacade;
 use App\Facades\Course\QuestionFacade;
 use App\Facades\Course\QuizFacade;
+use App\Facades\Subscription\SubscriptionFacade;
 use App\Facades\Course\VideoFacade;
 use App\Facades\User\UserFacade;
 use App\Providers\FacadeServiceProvider;
@@ -191,13 +192,13 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
         'UserFacade' => UserFacade::class,
         'CourseFacade' => CourseFacade::class,
         'LessonFacade' => LessonFacade::class,
         'QuestionFacade' => QuestionFacade::class,
         'QuizFacade' => QuizFacade::class,
         'VideoFacade' => VideoFacade::class,
+        'SubscriptionFacade' => SubscriptionFacade::class,
     ])->toArray(),
 
 ];

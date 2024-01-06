@@ -266,6 +266,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUserId($value)
  * @mixin \Eloquent
+ * @property string|null $end_date
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Course> $courses
+ * @property-read int|null $courses_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereEndDate($value)
  */
 	class Subscription extends \Eloquent {}
 }
@@ -313,6 +317,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutRole($roles, $guard = null)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Subscription> $subscriptions
+ * @property-read int|null $subscriptions_count
  */
 	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }

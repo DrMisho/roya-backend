@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -65,6 +66,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{video}', [VideoController::class, 'show']);
     });
 
+    Route::group(['prefix' => 'subscriptions'], function () {
+        Route::post('/', [SubscriptionController::class, 'store']);
+        Route::get('/my-subscriptions', [SubscriptionController::class, 'mySubscription']);
+        Route::get('/{subscription}', [SubscriptionController::class, 'show']);
+    });
+
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
@@ -97,5 +104,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
         Route::post('/', [VideoController::class, 'store']);
         Route::put('/{video}', [VideoController::class, 'update']);
         Route::delete('/{video}', [VideoController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'subscriptions'], function () {
+        Route::get('/', [SubscriptionController::class, 'index']);
+        Route::post('/{subscription}/change-status', [SubscriptionController::class, 'changeStatus']);
     });
 });

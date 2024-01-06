@@ -6,6 +6,7 @@ use App\Services\CourseService;
 use App\Services\LessonService;
 use App\Services\QuestionService;
 use App\Services\QuizService;
+use App\Services\SubscriptionService;
 use App\Services\UserService;
 use App\Services\VideoService;
 use Illuminate\Support\ServiceProvider;
@@ -34,6 +35,9 @@ class FacadeServiceProvider extends ServiceProvider
         });
         $this->app->bind('VideoService', function () {
             return new VideoService();
+        });
+        $this->app->bind('SubscriptionService', function () {
+            return new SubscriptionService();
         });
     }
 
