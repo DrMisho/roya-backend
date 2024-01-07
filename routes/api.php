@@ -6,6 +6,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -75,6 +76,8 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
+
+    Route::post('/users/{user}/reset-device', [UserController::class, 'resetDevice']);
 
     Route::group(['prefix' => 'courses'], function() {
         Route::post('/', [CourseController::class, 'store']);

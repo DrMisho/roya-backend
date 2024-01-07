@@ -79,6 +79,12 @@ class AuthController extends Controller
                     'password' => $request->password,
                 ];
 
+                if(is_null($user->device))
+                {
+                    $user->device = $request->header('device');
+                    $user->save();
+                }
+
                 if($request->header('device') != $user->device)
                     return failResponse('لا تستطيع تسجيل الدخول من اكثر من جهاز', 400);
 
