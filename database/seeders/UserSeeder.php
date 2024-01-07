@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         $user = User::create([
             'username' => 'mustafa',
             'phone_number' => '0935878539',
+            'device' => 'Mi Note 10 Lite',
             'password' => Hash::make('Mm#123123'),
         ]);
 
@@ -35,6 +36,7 @@ class UserSeeder extends Seeder
         $user = User::create([
             'username' => 'aghyad',
             'phone_number' => '0960686912',
+            'device' => 'Mi Note 10 Lite',
             'password' => Hash::make('Mm#123123'),
         ]);
 

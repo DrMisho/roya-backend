@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['middleware' => 'guest'], function () {
+Route::group(['middleware' => ['guest', 'device']], function () {
     Route::post('/sign-up', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/tokens/refresh', [AuthController::class, 'refresh']);

@@ -20,6 +20,7 @@ class VideoController extends Controller
         $query = request()->all();
         try
         {
+            dd(request()->userAgent());
             $query['course_id'] = $course->id;
 
             if( ! userHasAccess(auth()->user(), $course) )

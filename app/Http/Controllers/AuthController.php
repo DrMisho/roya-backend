@@ -34,6 +34,7 @@ class AuthController extends Controller
             DB::beginTransaction();
 
             $user = UserFacade::store([
+                'device' => $request->header('device'),
                 'password' => Hash::make($request->password),
                 ...$request->except('password'),
             ]);
@@ -77,6 +78,10 @@ class AuthController extends Controller
                     'username' => $user->username,
                     'password' => $request->password,
                 ];
+
+                if($request->header('device') != $user->device)
+                    return failResponse('لا تستطيع تسجيل الدخول من اكثر من جهاز', 400);
+
                 $response = UserFacade::proxy('password', $credentials);
 
                 return response()->json($response);
