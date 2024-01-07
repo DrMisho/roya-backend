@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\QuestionResource;
+use App\Models\Course;
 use App\Models\Question;
 use DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use QuestionFacade;
 
@@ -13,12 +15,14 @@ class QuestionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Course $course)
     {
         $query = request()->all();
         try
         {
-            if( ! userHasAccess(auth()->user()) )
+            $query['course_id'] = $course->id;
+
+            if( ! userHasAccess(auth()->user(), $course) )
                 $query['is_public'] = true;
 
             $questions = QuestionFacade::getList($query);
@@ -71,6 +75,22 @@ class QuestionController extends Controller
     {
         try
         {
+            $course = $question->course;
+
+            if( ! userHasAccess(auth()->user(), $course) )
+                $is_public = true;
+
+            try
+            {
+                $question = QuestionFacade::getSingleByQuery([
+                    'id' => $question->id,
+                    'is_public' => $is_public?? false
+                ]);
+            }
+            catch(ModelNotFoundException $e)
+            {
+                return failResponse('هذه الدورة لست مشترك بالمادة الخاصة بها', 403);
+            }
             $count = QuestionFacade::getCount();
 
             return successResponse(new QuestionResource($question), $count);

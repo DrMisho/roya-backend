@@ -24,6 +24,12 @@ class QuizService extends Service
         $query->when($array['id'] ?? false, fn($query, $id) =>
             $query->where('id', $id)
         );
+        $query->when($array['course_id'] ?? false, fn($query, $course_id) =>
+            $query->where('course_id', $course_id)
+        );
+        $query->when($array['is_public'] ?? false, fn($query, $is_public) =>
+            $query->where('is_public', $is_public)
+        );
 
         $query->when($array['search'] ?? false, fn($query, $search) =>
             $query->where(function($query) use($search) {

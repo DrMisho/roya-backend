@@ -47,22 +47,22 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['prefix' => 'lessons'], function () {
-        Route::get('/', [LessonController::class, 'index']);
         Route::get('/{lesson}', [LessonController::class, 'show']);
+        Route::get('/courses/{course}', [LessonController::class, 'index']);
     });
 
     Route::group(['prefix' => 'questions'], function () {
-        Route::get('/', [QuestionController::class, 'index']);
         Route::get('/{question}', [QuestionController::class, 'show']);
+        Route::get('/courses/{course}', [QuestionController::class, 'index']);
     });
 
     Route::group(['prefix' => 'quizzes'], function () {
-        Route::get('/', [QuizController::class, 'index']);
+        Route::get('/courses/{course}', [QuizController::class, 'index']);
         Route::get('/{quiz}', [QuizController::class, 'show']);
     });
 
     Route::group(['prefix' => 'videos'], function () {
-        Route::get('/', [VideoController::class, 'index']);
+        Route::get('/courses/{course}', [VideoController::class, 'index']);
         Route::get('/{video}', [VideoController::class, 'show']);
     });
 

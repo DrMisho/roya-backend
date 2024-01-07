@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\VideoResource;
+use App\Models\Course;
 use App\Models\Video;
 use DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use VideoFacade;
 
@@ -13,12 +15,14 @@ class VideoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Course $course)
     {
         $query = request()->all();
         try
         {
-            if( ! userHasAccess(auth()->user()) )
+            $query['course_id'] = $course->id;
+
+            if( ! userHasAccess(auth()->user(), $course) )
                 $query['is_public'] = true;
 
             $videos = VideoFacade::getList($query);
@@ -70,6 +74,22 @@ class VideoController extends Controller
     {
         try
         {
+            $course = $video->course;
+
+            if( ! userHasAccess(auth()->user(), $course) )
+                $is_public = true;
+
+            try
+            {
+                $video = VideoFacade::getSingleByQuery([
+                    'id' => $video->id,
+                    'is_public' => $is_public?? false
+                ]);
+            }
+            catch(ModelNotFoundException $e)
+            {
+                return failResponse('هذا الفيديو لست مشترك بالمادة الخاصة به', 403);
+            }
             $count = VideoFacade::getCount();
 
             return successResponse(new VideoResource($video), $count);

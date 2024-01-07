@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\QuizResource;
+use App\Models\Course;
 use App\Models\Option;
 use App\Models\Quiz;
 use DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use QuizFacade;
 
@@ -14,12 +16,14 @@ class QuizController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Course $course)
     {
         $query = request()->all();
         try
         {
-            if( ! userHasAccess(auth()->user()) )
+            $query['course_id'] = $course->id;
+
+            if( ! userHasAccess(auth()->user(), $course) )
                 $query['is_public'] = true;
 
             $quizzes = QuizFacade::getList($query);
@@ -77,6 +81,22 @@ class QuizController extends Controller
     {
         try
         {
+            $course = $quiz->course;
+
+            if( ! userHasAccess(auth()->user(), $course) )
+                $is_public = true;
+
+            try
+            {
+                $quiz = QuizFacade::getSingleByQuery([
+                    'id' => $quiz->id,
+                    'is_public' => $is_public?? false
+                ]);
+            }
+            catch(ModelNotFoundException $e)
+            {
+                return failResponse('هذه الاتمتات لست مشترك بالمادة الخاصة بها', 403);
+            }
             $count = QuizFacade::getCount();
 
             return successResponse(new QuizResource($quiz), $count);

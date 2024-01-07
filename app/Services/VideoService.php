@@ -29,6 +29,10 @@ class VideoService extends Service
             $query->where('is_public', $is_public)
         );
 
+        $query->when($array['course_id'] ?? false, fn($query, $course_id) =>
+            $query->where('course_id', $course_id)
+        );
+
         $query->when($array['search'] ?? false, fn($query, $search) =>
             $query->where(function($query) use($search) {
 

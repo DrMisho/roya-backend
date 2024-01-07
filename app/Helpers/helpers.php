@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Constants\Constant;
+use App\Models\Course;
 use App\Models\User;
 
 /**
@@ -52,7 +54,9 @@ function mediaType($mime_type): string
 }
 
 
-function userHasAccess(User $user)
+function userHasAccess(User $user, Course $course)
 {
-    return $user->hasRole('super-admin');
+    $has_course = ! $user->subscriptions->where('status', Constant::SUBSCRIPTION_STATUS['فعال'])->pluck('courses')->flatten()->where('id', $course->id)->isEmpty();
+    return $has_course;
+    // return $user->hasRole('super-admin') || $has_course;
 }

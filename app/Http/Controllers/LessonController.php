@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\LessonResource;
+use App\Models\Course;
 use App\Models\Lesson;
 use DB;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use LessonFacade;
 
@@ -13,12 +15,14 @@ class LessonController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Course $course)
     {
         $query = request()->all();
         try
         {
-            if( ! userHasAccess(auth()->user()) )
+            $query['course_id'] = $course->id;
+
+            if( ! userHasAccess(auth()->user(), $course) )
                 $query['is_public'] = true;
 
             $lessons = LessonFacade::getList($query);
@@ -70,6 +74,23 @@ class LessonController extends Controller
     {
         try
         {
+            $course = $lesson->course;
+
+            if( ! userHasAccess(auth()->user(), $course) )
+                $is_public = true;
+
+            try
+            {
+                $lesson = LessonFacade::getSingleByQuery([
+                    'id' => $lesson->id,
+                    'is_public' => $is_public?? false
+                ]);
+            }
+            catch(ModelNotFoundException $e)
+            {
+                return failResponse('هذه المحاضرة لست مشترك بالمادة الخاصة بها', 403);
+            }
+
             $count = LessonFacade::getCount();
 
             return successResponse(new LessonResource($lesson), $count);
