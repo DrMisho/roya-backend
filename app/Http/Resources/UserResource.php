@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             'username' => $this->username,
             'phone_number' => $this->phone_number,
             'roles' => $this->roles()->without('permissions')->get(),
-            'permissions' => $this->getAllPermissions(),
+            'device' => $this->when(auth()->user()->hasRole('super-admin'), $this->device),
             'image_url' => $this->getFirstMedia('images')?->getUrl(),
             'image_path' => $this->getFirstMedia('images')?->getPath(),
             'image_name' => $this->getFirstMedia('images')?->name,

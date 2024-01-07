@@ -77,6 +77,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
 
+    Route::get('/users', [UserController::class, 'index']);
     Route::post('/users/{user}/reset-device', [UserController::class, 'resetDevice']);
 
     Route::group(['prefix' => 'courses'], function() {

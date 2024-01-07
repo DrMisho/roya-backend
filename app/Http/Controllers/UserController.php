@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use DB;
 use Exception;
@@ -11,6 +12,22 @@ use UserFacade;
 
 class UserController extends Controller
 {
+    public function index(): JsonResponse
+    {
+        $query = request()->all();
+        try
+        {
+            $users = UserFacade::getList($query);
+            $count = UserFacade::getCount($query);
+
+            return successResponse(UserResource::collection($users), $count);
+        }
+        catch (\Exception $e)
+        {
+            return failResponse($e->getMessage());
+        }
+    }
+
     public function resetDevice(User $user): JsonResponse
     {
         DB::beginTransaction();
