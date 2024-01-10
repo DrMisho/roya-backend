@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CobonController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\QuestionController;
@@ -44,6 +45,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['prefix' => 'courses'], function () {
         Route::get('/', [CourseController::class, 'index']);
+        Route::get('/my-courses', [CourseController::class, 'myCourses']);
         Route::get('/{course}', [CourseController::class, 'show']);
     });
 
@@ -72,6 +74,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/my-subscriptions', [SubscriptionController::class, 'mySubscription']);
         Route::get('/{subscription}', [SubscriptionController::class, 'show']);
     });
+
+    Route::post('/cobons/check-cobon', [CobonController::class, 'checkCobon']);
 
 });
 
@@ -113,5 +117,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function
     Route::group(['prefix' => 'subscriptions'], function () {
         Route::get('/', [SubscriptionController::class, 'index']);
         Route::post('/{subscription}/change-status', [SubscriptionController::class, 'changeStatus']);
+    });
+
+    Route::group(['prefix' => 'cobons'], function () {
+        Route::get('/', [CobonController::class, 'index']);
+        Route::post('/', [CobonController::class, 'store']);
     });
 });

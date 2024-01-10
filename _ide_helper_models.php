@@ -32,6 +32,28 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Cobon
+ *
+ * @property int $id
+ * @property int $status
+ * @property int|null $package_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Package|null $package
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon wherePackageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereUpdatedAt($value)
+ */
+	class Cobon extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Course
  *
  * @property int $id
@@ -317,8 +339,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutPermission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutRole($roles, $guard = null)
  * @mixin \Eloquent
+ * @property string|null $device
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Subscription> $subscriptions
  * @property-read int|null $subscriptions_count
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereDevice($value)
  */
 	class User extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
 }

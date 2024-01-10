@@ -6,6 +6,7 @@ use App\Facades\Course\QuestionFacade;
 use App\Facades\Course\QuizFacade;
 use App\Facades\Subscription\SubscriptionFacade;
 use App\Facades\Course\VideoFacade;
+use App\Facades\Subscription\CobonFacade;
 use App\Facades\User\UserFacade;
 use App\Providers\FacadeServiceProvider;
 use Illuminate\Support\Facades\Facade;
@@ -199,6 +200,7 @@ return [
         'QuizFacade' => QuizFacade::class,
         'VideoFacade' => VideoFacade::class,
         'SubscriptionFacade' => SubscriptionFacade::class,
+        'CobonFacade' => CobonFacade::class,
     ])->toArray(),
 
 ];

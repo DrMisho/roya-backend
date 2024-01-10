@@ -57,6 +57,6 @@ function mediaType($mime_type): string
 function userHasAccess(User $user, Course $course)
 {
     $has_course = ! $user->subscriptions->where('status', Constant::SUBSCRIPTION_STATUS['فعال'])->pluck('courses')->flatten()->where('id', $course->id)->isEmpty();
-    return $has_course;
-    // return $user->hasRole('super-admin') || $has_course;
+    // return $has_course;
+    return $user->hasRole('super-admin') || $has_course;
 }

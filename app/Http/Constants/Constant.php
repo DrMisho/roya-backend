@@ -22,5 +22,14 @@ final class Constant
 
     ];
 
+    public const COBON_STATUS = [
+
+        'معلق' => 0,
+
+        'فعال' => 1,
+
+        'منتهي' => 2,
+
+    ];
 
 }

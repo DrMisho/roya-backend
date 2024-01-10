@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\CobonService;
 use App\Services\CourseService;
 use App\Services\LessonService;
 use App\Services\QuestionService;
@@ -38,6 +39,9 @@ class FacadeServiceProvider extends ServiceProvider
         });
         $this->app->bind('SubscriptionService', function () {
             return new SubscriptionService();
+        });
+        $this->app->bind('CobonService', function () {
+            return new CobonService();
         });
     }
 

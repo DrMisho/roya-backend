@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Facades\Course\CourseFacade;
+use App\Http\Constants\Constant;
 use App\Http\Resources\CourseResource;
 use App\Models\Course;
 use DB;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -129,6 +131,27 @@ class CourseController extends Controller
         catch(\Exception $e)
         {
             DB::rollBack();
+            return failResponse($e->getMessage());
+        }
+    }
+
+    public function myCourses(): JsonResponse
+    {
+        try
+        {
+            $courses = auth()
+                ->user()
+                ->subscriptions
+                ->where('status', Constant::SUBSCRIPTION_STATUS['فعال'])
+                ->pluck('courses')
+                ->flatten();
+
+            $count = $courses->count();
+
+            return successResponse(CourseResource::collection($courses), $count);
+        }
+        catch(\Exception $e)
+        {
             return failResponse($e->getMessage());
         }
     }
