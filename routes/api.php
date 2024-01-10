@@ -81,8 +81,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'role:super-admin'], function () {
 
-    Route::get('/users', [UserController::class, 'index']);
-    Route::post('/users/{user}/reset-device', [UserController::class, 'resetDevice']);
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::post('/{user}/reset-device', [UserController::class, 'resetDevice']);
+    });
 
     Route::group(['prefix' => 'courses'], function() {
         Route::post('/', [CourseController::class, 'store']);

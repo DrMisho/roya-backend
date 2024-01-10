@@ -25,6 +25,14 @@ class CourseService extends Service
             $query->where('id', $id)
         );
 
+        $query->when($array['academic_year_id'] ?? false, fn($query, $academic_year_id) =>
+            $query->where('academic_year_id', $academic_year_id)
+        );
+
+        $query->when($array['semester_id'] ?? false, fn($query, $semester_id) =>
+            $query->where('semester_id', $semester_id)
+        );
+
         $query->when($array['search'] ?? false, fn($query, $search) =>
             $query->where(function($query) use($search) {
 

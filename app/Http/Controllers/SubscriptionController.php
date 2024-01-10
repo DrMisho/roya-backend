@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Constants\Constant;
 use App\Http\Resources\SubscriptionResource;
+use App\Models\Cobon;
 use App\Models\Course;
 use App\Models\Subscription;
 use Arr;
@@ -72,12 +73,17 @@ class SubscriptionController extends Controller
             'course_id' => 'required_if:package_id,2|numeric',
             'academic_year_id' => 'required_if:package_id,1|numeric',
             'semester_id' => 'required_if:package_id,1|numeric',
+            'cobon' => 'required|string',
             'force' => 'nullable|boolean',
         ]);
 
         try
         {
             $data['user_id'] = auth()->id();
+
+            $cobon = Cobon::query()->where('cobon', $data['cobon'])->first();
+            if($cobon->status == Constant::COBON_STATUS['منتهي'])
+                return failResponse('هذا الكود منتهي');
 
             if($data['package_id'] == Constant::PACKAGES['فصلي'])
             {
@@ -114,6 +120,11 @@ class SubscriptionController extends Controller
                 })->update(['status' => Constant::SUBSCRIPTION_STATUS['منتهي']]);
 
             }
+            $data['cobon_id'] = $cobon->id;
+            $data['start_date'] = Carbon::now();
+            $data['end_date'] = Carbon::now()->addMonth(5);
+
+            Cobon::query()->where('cobon', $data['cobon'])->update(['status' => Constant::COBON_STATUS['منتهي']]);
 
             $subscription = SubscriptionFacade::store($data);
             $count = SubscriptionFacade::getCount();

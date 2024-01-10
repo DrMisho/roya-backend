@@ -38,6 +38,7 @@ class Subscription extends Model
     protected $fillable = [
         'user_id',
         'package_id',
+        'cobon_id',
         'status',
         'start_date',
         'end_date',
@@ -53,6 +54,11 @@ class Subscription extends Model
     public function package(): BelongsTo
     {
         return $this->belongsTo(Package::class);
+    }
+
+    public function cobon(): BelongsTo
+    {
+        return $this->belongsTo(Cobon::class);
     }
 
     public function courses(): BelongsToMany

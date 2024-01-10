@@ -34,20 +34,10 @@ namespace App\Models{
 /**
  * App\Models\Cobon
  *
- * @property int $id
- * @property int $status
- * @property int|null $package_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Package|null $package
  * @method static \Illuminate\Database\Eloquent\Builder|Cobon newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Cobon newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Cobon query()
- * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Cobon wherePackageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereStatus($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Cobon whereUpdatedAt($value)
  */
 	class Cobon extends \Eloquent {}
 }
@@ -152,8 +142,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Option whereQuizId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Option whereUpdatedAt($value)
  * @mixin \Eloquent
- * @property int $is_correct
- * @method static \Illuminate\Database\Eloquent\Builder|Option whereIsCorrect($value)
  */
 	class Option extends \Eloquent {}
 }
@@ -288,10 +276,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereUserId($value)
  * @mixin \Eloquent
- * @property string|null $end_date
+ * @property-read \App\Models\Cobon|null $cobon
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Course> $courses
  * @property-read int|null $courses_count
- * @method static \Illuminate\Database\Eloquent\Builder|Subscription whereEndDate($value)
  */
 	class Subscription extends \Eloquent {}
 }
